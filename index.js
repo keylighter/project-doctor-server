@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 
 
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -55,7 +55,7 @@ async function run() {
         const usersCollection = database.collection('users');
         app.get('/appointments', async (req, res) => {
             const email = req.query.email;
-            const date = new Date(req.query.date).toLocaleDateString();
+            const date = (req.query.date)
             // console.log(date);
             const query = { email: email, date: date }
             const cursor = appointmentsCollection.find(query);
